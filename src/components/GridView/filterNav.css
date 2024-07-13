@@ -1,0 +1,129 @@
+.grid_navigation{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 40px;
+    box-sizing: border-box;
+
+    width: 100%;
+    height: fit-content;
+}
+
+.nav_logo{
+    width: 32px;
+    height: 32px;
+
+    background-image: url('https://cdn2.hubspot.net/hubfs/53/image8-2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 50%;
+    
+    cursor: pointer;
+}
+
+
+.nav_search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 380px;
+    /* border: 1px solid black; */
+
+    position: relative;
+}
+
+.nav_search::before{
+    position: absolute;
+    top: calc(50% - 8px);
+    left: 12px;
+
+    height: 16px;
+    width: 16px;
+
+    content: "";
+
+    background-image: url('	https://img.icons8.com/?size=512&id=132&format=png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav_search > input{
+    height: 32px;
+    width: calc(100% - 80px);
+
+    line-height: 32px;
+    color: black;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+
+
+    border-radius: 24px 0 0 24px;
+    border: 1px solid #1c1c1c;
+
+    padding: 0 20px 0 32px;
+    margin: 0;
+
+    box-sizing: border-box;
+
+}
+
+.nav_search > button{
+    color: white;
+    line-height: 32px;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    text-align: center;
+
+    height: 32px;
+    width: 80px;
+
+    border-radius: 0 24px 24px 0;
+    border: 1px solid #1c1c1c;
+
+    padding: 0px;
+    margin: 0;
+
+    box-sizing: border-box;
+
+    background-color: black;
+    cursor: pointer;
+}
+
+
+.nav_filter{
+    display: flex;
+
+    height: 32px;
+    width: 96px;
+
+    border-radius: 24px;
+    border: 1px solid #1c1c1c;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    /* cursor: pointer; */
+}
+
+.select {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}

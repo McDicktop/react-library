@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { PageOne, PageTwo } from "./components/test";
-import Home from "./components/test/Home";
+// import { PageOne, PageTwo } from "./components/test";
+// import Home from "./components/test/Home";
 import Homepage from "./components/Homepage/Homepage";
 import GridView from "./components/GridView";
 import InspectCard from "./components/InspectCard";
@@ -26,3 +26,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+// x - количество страниц
+// начало = x(n-1) + 1; конец = xn

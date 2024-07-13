@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import FilterNav from "./filterNav";
+import "./style.css";
 
 const URL = "https://666340f262966e20ef0c113d.mockapi.io/";
+const AMOUNT_PER_PAGE = 16;
 
 function GridView() {
     const [data, setData] = useState([]);
+    //   const [data, setData] = useState(Array.from(Array(100).keys()));
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState(null);
+    const [filteredData, setFilteredData] = useState([]);
+    const [paginatedData, setPaginatedData] = useState([]);
+    const [filter, setFilter] = useState(null);
 
     async function getData() {
         const res = await axios(URL + "gallery");
@@ -25,12 +34,59 @@ function GridView() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        const filterData = () => {
+            let filtered = search
+                ? data.filter((el) =>
+                      el.bookName.toLowerCase().includes(search.toLowerCase())
+                  )
+                : data;
+
+
+            switch (filter) {
+                case "up":
+                    filtered = [...filtered].sort((a,b) => a.bookName.localeCompare(b.bookName));
+                    break;
+                case "down":
+                    filtered = [...filtered].sort((a,b) => b.bookName.localeCompare(a.bookName));
+                    break;
+                default:
+                    break;
+            }
+
+            setFilteredData(filtered);
+            setPaginatedData(
+                filtered.slice(
+                    AMOUNT_PER_PAGE * (page - 1),
+                    AMOUNT_PER_PAGE * page
+                )
+            );
+        };
+
+        filterData();
+    }, [data, search, filter, page]);
+
+    function handleUpdateDataBySearch(query) {
+        setSearch(query);
+        setPage(1);
+    }
+
+    function handleFilterData(param) {
+        setFilter(param);
+        setPage(1);
+    }
+
     return (
         <div className="libWrapper">
-            {data.length &&
-                data.map((el, ind) => {
-                    return (
-                        <div key={`ind_${ind}`} className="bookWrapper">
+            <FilterNav
+                handleSearch={handleUpdateDataBySearch}
+                handleFilter={handleFilterData}
+            />
+
+            <ul className="grid_wrapper">
+                {paginatedData.length &&
+                    paginatedData.map((el, index) => (
+                        <div key={`ind_${index}`} className="bookWrapper">
                             <img
                                 className="bookCover"
                                 src={el.cover}
@@ -39,14 +95,39 @@ function GridView() {
                             <div className="info">
                                 <p className="bookname">{el.bookName}</p>
                                 <p className="author">{el.author}</p>
+                                <p className="price">{`$${el.price}`}</p>
                             </div>
 
                             <Link to={`/books/${el.id}`} className="readBtn">
-                                View
+                            {/* {`${el.price} ru`} */}
                             </Link>
+
+                            
+
+
                         </div>
+                    ))}
+            </ul>
+
+            <ul className="pagination_list">
+                {Array.from({
+                    length: Math.ceil(filteredData.length / AMOUNT_PER_PAGE),
+                }).map((_, index) => {
+                    return (
+                        <li
+                            className={`pagination_item ${
+                                index === page - 1 ? "active" : ""
+                            }`}
+                            onClick={(e) => {
+                                setPage(index + 1);
+                            }}
+                            key={`pagination_list_item_${index}`}
+                        >
+                            {index + 1}
+                        </li>
                     );
                 })}
+            </ul>
         </div>
     );
 }
