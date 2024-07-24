@@ -1,0 +1,26 @@
+.tags {
+    width: fit-content;
+    margin-left: 40px;
+    /* margin-right: auto;  */
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.tag {
+    display: inline;
+    padding: 5px 20px;
+    text-align: center;
+    background-color: rgb(226, 226, 226);
+    margin: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.selectedTag {
+    background-color: rgb(199, 199, 199);
+    background-image: url('./img/unavalible.png');
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: 92%;
+}

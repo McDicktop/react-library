@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import FilterNav from "./filterNav";
+import Tags from "../Tags/tags";
 import "./style.css";
 
 const URL = "https://666340f262966e20ef0c113d.mockapi.io/";
@@ -38,17 +39,17 @@ function GridView() {
         const filterData = () => {
             let filtered = search
                 ? data.filter((el) =>
-                      el.bookName.toLowerCase().includes(search.toLowerCase())
-                  )
+                    el.bookName.toLowerCase().includes(search.toLowerCase())
+                )
                 : data;
 
 
             switch (filter) {
                 case "up":
-                    filtered = [...filtered].sort((a,b) => a.bookName.localeCompare(b.bookName));
+                    filtered = [...filtered].sort((a, b) => a.bookName.localeCompare(b.bookName));
                     break;
                 case "down":
-                    filtered = [...filtered].sort((a,b) => b.bookName.localeCompare(a.bookName));
+                    filtered = [...filtered].sort((a, b) => b.bookName.localeCompare(a.bookName));
                     break;
                 default:
                     break;
@@ -76,6 +77,10 @@ function GridView() {
         setPage(1);
     }
 
+    function handleTagsData() {
+
+    }
+
     return (
         <div className="libWrapper">
             <FilterNav
@@ -83,10 +88,19 @@ function GridView() {
                 handleFilter={handleFilterData}
             />
 
+            <Tags
+                handleTags={handleTagsData}
+                totalData={data}
+            />
+
             <ul className="grid_wrapper">
                 {paginatedData.length &&
                     paginatedData.map((el, index) => (
-                        <div key={`ind_${index}`} className="bookWrapper">
+                        <li key={`ind_${index}`} className="bookWrapper" onClick={(e) => {
+                            if (!e.target.classList.contains('view_btn')) {
+                                window.location.replace(`/books/${el.id}`)
+                            }
+                        }}>
                             <img
                                 className="bookCover"
                                 src={el.cover}
@@ -98,14 +112,11 @@ function GridView() {
                                 <p className="price">{`$${el.price}`}</p>
                             </div>
 
-                            <Link to={`/books/${el.id}`} className="readBtn">
-                            {/* {`${el.price} ru`} */}
-                            </Link>
-
-                            
-
-
-                        </div>
+                            {/* <Link to={`/books/${el.id}`} className="readBtn">Text</Link> */}
+                            {/* <p onClick={() => window.open(`/books/${el.id}`)}>View</p> */}
+                            <div className="view_btn" onClick={() => window.open('https://www.ilovepdf.com/')}></div>
+                            {/* <p onClick={() => window.location.replace('https://www.ilovepdf.com/')}>View</p> */}
+                        </li>
                     ))}
             </ul>
 
@@ -115,9 +126,8 @@ function GridView() {
                 }).map((_, index) => {
                     return (
                         <li
-                            className={`pagination_item ${
-                                index === page - 1 ? "active" : ""
-                            }`}
+                            className={`pagination_item ${index === page - 1 ? "active" : ""
+                                }`}
                             onClick={(e) => {
                                 setPage(index + 1);
                             }}

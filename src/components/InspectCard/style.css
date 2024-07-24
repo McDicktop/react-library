@@ -1,45 +1,244 @@
-.container {
-    display: grid;
-    grid-template-columns: 640px 400px; 
-    justify-content: center;    
-}
+ .container {
+     display: grid;
+     grid-template-columns: 36px 440px 400px 300px;
+     grid-template-rows: 80px auto;
+     justify-content: center;
+     grid-template-areas:
+         "x a a a"
+         ". b c d";
+ }
 
-.descriptionChild {
-    padding-left: 20px;
-}
+ .a {
+     grid-area: a;
+ }
+
+ .b {
+     grid-area: b;
+ }
+
+ .c {
+     grid-area: c;
+ }
+
+ .d {
+     grid-area: d;
+ }
+
+ .a,
+ .b,
+ .c,
+ .d {
+     padding: 20px;
+ }
+
+ .backBtn {
+     width: 36px;
+     height: 36px;
+     margin-top: 26px;
+     background-image: url('./img/back.png');
+     background-size: 80%;
+     background-repeat: no-repeat;
+     background-position: center;
+     border-radius: 8px;
+     background-color: rgb(117, 118, 118);
+     cursor: pointer;
+     transition: 0.2s linear;
+     border: none;
+ }
+
+ .backBtn:hover {
+     filter: opacity(.8);
+ }
 
 
 
-h3 {
-    text-align: justify;
-}
+ .fullImg {
+     width: 400px;
+     border-radius: 8px;
+ }
 
-h2 {
-    margin-bottom: 10px;    
-}
+ .thumb {
+     margin-top: 30px;
+     display: flex;
+     justify-content: space-between;
+ }
 
-h4 {
-    margin-bottom: 40px; 
-    color: rgb(71, 71, 71);
-}
+ .thumb img {
+     height: 90px;
+     cursor: pointer;
+     border-radius: 8px;
+ }
 
-.link {
-    background-color: rgb(117, 118, 118);
-    color:rgb(207, 207, 207);
-    text-align: center;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px;
-}
+ .thumb img:hover {
+     opacity: .8;
+ }
 
-.link:hover{
-    background-color: rgb(81, 81, 81);
-}
 
-.linkWrapper {
-    width: 0;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-}
+ .tableChar th {
+     text-align: left;
+     font-weight: 100;
+     color: gray;
+ }
+
+ .tableChar td {
+     padding-left: 20px;
+ }
+
+ .tableChar {
+     line-height: 22px;
+     font-size: 14px;
+ }
+
+
+
+ .btnsWrapper {
+     display: flex;
+     justify-content: space-between;
+     height: 40px;
+     margin-top: 16px;
+ }
+
+ .btnsWrapper button {
+     cursor: pointer;
+     border-radius: 8px;
+ }
+
+ .btnsWrapper button:hover {
+     filter: opacity(.8);
+     transition: 0.2s linear;
+ }
+
+
+ .btnBuy {
+     width: 160px;
+     background-color: rgb(67, 125, 252);
+     border: none;
+     font-size: 20px;
+     color: rgb(233, 233, 233);
+ }
+
+
+ .bookmark {
+     background-image: url('./img/bookmark.png');
+     width: 40px;
+     border: 1px solid rgb(168, 168, 168);
+     background-position: center;
+     background-color: white;
+ }
+
+ .characteristics {
+     margin-top: 20px;
+ }
+
+
+ .topPart {
+     padding: 20px;
+     height: 120px;
+     border-bottom: 1px solid #f0f0f0;
+ }
+
+ .bottomPart {
+     padding: 20px;
+     height: 140px;
+ }
+
+ .commonPart {
+     border: 1px solid #f0f0f0;
+     box-shadow: 0 4px 12px #0000000a;
+
+ }
+
+
+ .avalible {
+     display: flex;
+     margin-top: 10px;
+ }
+
+ .avalibleImg {
+     background-image: url('./img/ok.png');
+     background-size: 90%;
+     width: 20px;
+     height: 20px;
+ }
+
+
+ .unavalibleImg {
+     background-image: url('./img/unavalible.png');
+     background-size: 80%;
+     background-repeat: no-repeat;
+     width: 20px;
+     height: 20px;
+ }
+
+ .secondStr {
+     color: gray;
+     font-size: 12px;
+     margin-top: 5px;
+ }
+
+ .firstStr {
+     font-size: 14px;
+     margin-top: 10px;
+ }
+
+ .bottomPart li {
+     list-style-type: none;
+ }
+
+ a {
+     border-bottom: 1px solid gray;
+     text-decoration: none;
+     color: black;
+     font-size: 12px;
+     font-weight: bold;
+     padding-bottom: 2px;
+ }
+
+
+ li {
+     margin-bottom: 4px;
+ }
+
+ article {
+     line-height: 30px;
+ }
+
+ .toDescription {
+     margin-top: 20px;
+     width: 140px;
+     padding: 10px 20px;
+     border: none;
+     font-weight: bold;
+     cursor: pointer;
+     border-radius: 8px;
+     color: rgb(97, 94, 94);
+     transition: 0.2s linear;
+ }
+
+ .toDescription:hover {
+     background-color: rgb(197, 194, 192);
+     color: black;
+ }
+
+
+ .avalibleBtn {
+     margin-top: 16px;
+     width: 260px;
+     padding: 10px 20px;
+     border: none;
+     font-weight: bold;
+     cursor: pointer;
+     border-radius: 8px;
+     color: rgb(97, 94, 94);
+     transition: 0.2s linear;
+ }
+
+ .avalibleBtn:hover {
+     background-color: rgb(197, 194, 192);
+     color: black;
+ }
+
+ .avalibleInshops {
+     margin-top: 16px;
+     font-size: 12px;
+ }
